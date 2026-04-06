@@ -1,0 +1,59 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace "com.wifimanager.wifi_manager"
+    compileSdk 35
+    ndkVersion "27.0.12077973"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    defaultConfig {
+        applicationId "com.wifimanager.wifi_manager"
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+            universalApk true
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.webkit:webkit:1.11.0'
+}
