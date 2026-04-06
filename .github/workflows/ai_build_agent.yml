@@ -1,0 +1,35 @@
+name: 🤖 AI Build Agent
+on: [push, workflow_dispatch]
+
+jobs:
+  smart_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Setup Flutter (AI Optimized)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: 🛠️ Dependency Auto-Fix
+        run: |
+          # تنظيف أي كاش قديم يسبب تعارض
+          flutter clean
+          # محاولة التثبيت العادية
+          flutter pub get || true
+          # الإصلاح القسري لتضارب الإصدارات (مثل intl و mockito)
+          flutter pub upgrade --major-versions --allow-huge-versions
+          
+      - name: 🏗️ Production Build (Multi-ABI)
+        run: |
+          # بناء APK مقسم لتقليل الحجم وتجنب أخطاء الذاكرة
+          flutter build apk --release --split-per-abi --no-tree-shake-icons --no-pub
+
+      - name: 📦 Deliver APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: WiFi-Manager-Production-Build
+          path: build/app/outputs/flutter-apk/*.apk
