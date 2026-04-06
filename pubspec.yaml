@@ -1,7 +1,7 @@
 name: wifi_manager
 description: WiFi Manager for Huawei HG531 V1 Router
-publish_to: 'none'
 version: 1.1.0+2
+publish_to: 'none'
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -11,33 +11,21 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
-  # تم تحويل المكتبات المتعارضة إلى any لحل المشكلة تلقائياً
+  
+  # المكتبات الأساسية (بدون إصدارات محددة للسماح للـ AI بحلها)
   intl: any
-  flutter_bloc: ^8.1.6
-  bloc: ^8.1.4
-  equatable: ^2.0.5
-  dio: ^5.7.0
-  shared_preferences: ^2.3.3
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  flutter_screenutil: ^5.9.3
-  google_fonts: ^6.2.1
-  shimmer: ^3.0.0
-  flutter_slidable: ^3.1.1
-  webview_flutter: ^4.10.0
-  permission_handler: ^11.3.1
-  network_info_plus: ^6.0.1
-  connectivity_plus: ^6.1.0
-  dartz: ^0.10.1
-  get_it: ^8.0.3
-  path_provider: ^2.1.4
-  package_info_plus: ^8.1.2
-  cupertino_icons: ^1.0.8
+  webview_flutter: any
+  dio: any
+  flutter_bloc: any
+  hive_flutter: any
+  get_it: any
+  # أضف باقي مكتباتك هنا بكلمة any إذا واجهت فشلاً
+  shared_preferences: any
+  flutter_screenutil: any
+  google_fonts: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # تحديث أدوات الاختبار لتعمل مع Dart 3
   mockito: any
   bloc_test: any
