@@ -12,20 +12,13 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   
-  # المكتبات الأساسية (بدون إصدارات محددة للسماح للـ AI بحلها)
-  intl: any
-  webview_flutter: any
-  dio: any
-  flutter_bloc: any
-  hive_flutter: any
-  get_it: any
-  # أضف باقي مكتباتك هنا بكلمة any إذا واجهت فشلاً
-  shared_preferences: any
-  flutter_screenutil: any
-  google_fonts: any
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  mockito: any
-  bloc_test: any
+  # الحل السحري: ترك الإصدارات فارغة لحل التعارض تلقائياً
+  intl:
+  mockito:
+  bloc_test:
+  webview_flutter: ^4.10.0
+  dio: ^5.7.0
+  flutter_bloc: ^8.1.6
+  hive_flutter: ^1.1.0
+  get_it: ^8.0.3
+  # أضف باقي المكتبات بنفس الطريقة إذا استمر الخطأ
