@@ -1,26 +1,27 @@
-name: main APK
-
-on:
-  push:
-    branches:
-      - main
+name: Build APK
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
+      
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.41.6'
+          channel: 'stable' # يستخدم أحدث نسخة مستقرة تلقائياً
 
-      - run: flutter pub get
+      - name: Install Dependencies
+        run: |
+          flutter pub get
+          flutter pub upgrade --major-versions
 
-      - run: flutter build apk --release
+      - name: Build APK
+        # إضافة no-tree-shake-icons لحل مشاكل الأيقونات الشائعة
+        run: flutter build apk --release --split-per-abi --no-tree-shake-icons
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: WiFi-Manager-APK
+          path: build/app/outputs/flutter-apk/*.apk
